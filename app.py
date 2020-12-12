@@ -57,7 +57,7 @@ while not valid_session:
     sessions = driver.find_elements_by_css_selector("td>a.btn-info")
 
     for session in sessions:
-        session_link = session.get_attribute("href")
+        session_link = str(session.get_attribute("href"))
         if "enter-session" in session_link:
             valid_session = True
             driver.get(session_link)
