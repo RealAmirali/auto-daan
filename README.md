@@ -7,7 +7,7 @@ Instead of refresh the page and try to enter the class, run this script and it's
 Make sure you have the latest version of Chrome
 
 ### For windows users:
-download latest version from [here](https://github.com/realamirali/auto-daan/releases).
+download latest version from [here](https://github.com/realamirali/auto-daan/releases) and run `auto-daan.exe`.
 
 ### For linux and osx users:
 You can follow this steps or wait until the build release.
