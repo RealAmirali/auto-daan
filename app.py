@@ -1,6 +1,6 @@
 import json
 import time
-import os
+import sys
 from pathlib import Path
 
 
@@ -62,7 +62,7 @@ while not valid_session:
         if "enter-session" in session_link:
             valid_session = True
             driver.get(session_link)
-            os.exit(0)
+            sys.exit(0)
     print("You don't have a class right now / Teacher doesn't entered yet")
     time.sleep(15)
 
