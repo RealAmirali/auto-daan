@@ -7,6 +7,9 @@ from pathlib import Path
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
+class_id = input("Enter class ID [leave it blank if you don't have one]: ")
+class_password = input("Enter class Password [leave it blank if you don't have one]: ")
+
 try:
     config_file = str(Path.home() / "daan.json")
     with open(config_file, 'r') as f:
@@ -55,16 +58,31 @@ valid_session = False
 while not valid_session:
     driver.get(f"{base_url}/session-list#session-list")
 
-    sessions = driver.find_elements_by_css_selector("td>a.btn-info")
-
-    for session in sessions:
-        session_link = str(session.get_attribute("href"))
-        if "enter-session" in session_link:
+    if class_id and class_password:
+        class_id_field = driver.find_element_by_name("id")
+        class_passowrd_field = driver.find_element_by_name("password")
+        class_id_field.send_keys(class_id)
+        class_passowrd_field.send_keys(class_password)
+        class_passowrd_field.send_keys(Keys.RETURN)
+        time.sleep(5)
+        alert = driver.find_elements_by_css_selector("div.alert")
+        if not alert:
             valid_session = True
-            driver.get(session_link)
             sys.exit(0)
-    print("You don't have a class right now / Teacher doesn't entered yet")
-    time.sleep(15)
+
+        time.sleep(10)
+
+    else:
+        sessions = driver.find_elements_by_css_selector("td>a.btn-info")
+
+        for session in sessions:
+            session_link = str(session.get_attribute("href"))
+            if "enter-session" in session_link:
+                valid_session = True
+                driver.get(session_link)
+                sys.exit(0)
+        print("You don't have a class right now / Teacher doesn't entered yet")
+        time.sleep(15)
 
 
 # .teacher-not-entered-classroom: Not entered
