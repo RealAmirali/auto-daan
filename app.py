@@ -39,7 +39,10 @@ user_password = config["user_password"]
 
 base_url = "http://" + branch + ".daan.ir"
 
-driver = webdriver.Chrome()
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_extension("ScreenRecorder.zip")
+
+driver = webdriver.Chrome(options=chrome_options)
 driver.get(f"{base_url}/login-identification-form#login-identification-form")
 assert "دان" in driver.title
 
