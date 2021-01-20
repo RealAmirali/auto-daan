@@ -12,25 +12,36 @@ class_password = input("Enter class Password [leave it blank if you don't have o
 
 try:
     config_file = str(Path.home() / "daan.json")
-    with open(config_file, 'r') as f:
+    with open(config_file, "r") as f:
         config_content = f.read()
 
     config = json.loads(config_content)
 
 except IOError:
     print("1) azad (tj)\n2) iauctb\n3) srbiau\n4) daanaan\n5) iau-tnb\n6) iauet")
-    branhes = {1: "azad", 2: "iauctb", 3: "srbiau", 4:" daanaan", 5: "iau-tnb", 6: "iauet"}
+    branhes = {
+        1: "azad",
+        2: "iauctb",
+        3: "srbiau",
+        4: " daanaan",
+        5: "iau-tnb",
+        6: "iauet",
+    }
     branch_select = int(input("Select the branch: "))
     branch = branhes[branch_select]
     user_id_number = input("User ID number: ")
     user_password = input("Password: ")
 
-    config = {"branch": branch, "user_id_number": user_id_number, "user_password": user_password}
+    config = {
+        "branch": branch,
+        "user_id_number": user_id_number,
+        "user_password": user_password,
+    }
 
     config_content = json.dumps(config)
     config_file = str(Path.home() / "daan.json")
 
-    with open(config_file, 'w') as f:
+    with open(config_file, "w") as f:
         f.write(config_content)
 
 branch = config["branch"]
