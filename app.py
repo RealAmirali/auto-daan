@@ -53,6 +53,10 @@ base_url = "http://" + branch + ".daan.ir"
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_extension("ScreenRecorder.zip")
 
+chrome_options.add_experimental_option("prefs", {
+    "profile.default_content_setting_values.media_stream_mic": 1
+    })
+
 driver = webdriver.Chrome(options=chrome_options)
 driver.get(f"{base_url}/login-identification-form#login-identification-form")
 assert "دان" in driver.title
